@@ -1,0 +1,6 @@
+body {background: #ccc;}
+
+span.error {
+    display: block;
+    color: #f00;
+}

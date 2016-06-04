@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <body>
+
+        <div id="eventhandler">
+
+            <form action="done.html" @submit.prevent="handleIt">
+                <button type="submit">
+                    Submit ME!
+                </button>
+            </form>
+
+        </div>
+        <script src="js/vue.js"></script>
+        <script>
+
+var data = {
+    message: 'hello now from the vue'
+};
+new Vue({
+    el: '#eventhandler',
+    data: data,
+
+    methods: {
+        handleIt: function() {
+            alert('Handled');
+        }
+
+    }
+});
+        </script>
+    </body>
+
+</html>

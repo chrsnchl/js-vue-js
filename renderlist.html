@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rendering a list</title>
+        <link rel="stylesheet" type="text/css" href="css/list.css">
+    </head>
+    <body>
+        <my-tasks :list="ctasks"></my-tasks>
+
+        <template id="tasks-template">
+            <h1>My Tasks 
+                <span v-show="remaining">({{ remaining }})</span>
+            </h1>
+            <ul v-show="list.length">
+                <li :class="{ 'completed' : task.completed }"  
+                      v-for="task in list"
+                      @click="task.completed = ! task.completed"
+                      >
+                      {{ task.body }}
+
+                    <span @click="deleteTask(task)">x</span>
+                </li>
+            </ul>
+
+            <p v-else>no tasks yet</p>
+
+            <button @click="clearCompleted">Clear Completed Tasks</button>
+        </template>
+        <script src="js/vue.js"></script>
+        <script>
+Vue.component('my-tasks', {
+    props: ['list'],
+    template: '#tasks-template',
+    computed: {
+        remaining: function() {
+            var inProgress = this.list.filter(function(task) {
+                return ! task.completed;      
+            }).length;
+            return inProgress;
+        }
+    } ,
+    methods: {
+        deleteTask: function(task){
+            this.list.$remove(task);
+        },
+        clearCompleted: function() {
+            this.list = this.list.filter(function(task){return ! task.completed})
+        }
+    }
+});
+
+new Vue({
+    el: 'body',
+    data: {
+        ctasks: [
+        {body: 'study vue', completed: false },
+        {body: 'format partitions', completed: true },
+        {body: 'prepare for awesome', completed: false }
+        ]
+
+    }
+});
+        </script>
+    </body>
+</html>

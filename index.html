@@ -11,7 +11,9 @@
         <h1>{{ message }}</h1>
         hello worlds
         <input v-model="message">
-        
+        <pre>
+            {{ $data | json }}
+        </pre>
         </div>
 
   <script src="js/vue.js"></script>
@@ -19,7 +21,7 @@
   <script>
 
     var data = {
-        message: 'Hello from the vue'
+        message: 'hello now from the vue'
         };
     new Vue({
         el: '#app',

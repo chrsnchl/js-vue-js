@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/form.css">
+<body>
+<form id="app">
+
+    <span class="error" v-show="!message">
+        You must enter a message.
+    </span>
+
+    <textarea v-model="message"></textarea>
+
+    <button type="submit" v-show="message">
+        Send message
+    </button>
+
+    <pre> {{ $data | json }} </pre>
+</form>
+  <script src="js/vue.js"></script>
+
+  <script>
+
+    var data = {
+        message: 'hello Emilie  now from the vue'
+        };
+    new Vue({
+        el: '#app',
+        data: data
+    });
+  </script>
+</body>
+
+</html>
